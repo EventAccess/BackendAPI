@@ -62,14 +62,14 @@ jobs:
       - name: Install reviewdog
         uses: reviewdog/action-setup@v1.3.0
         with:
-          reviewdog_version: latest
+          reviewdog_version: v0.20.1
 
       - name: Install dependencies
         run: pip install -r requirements-dev.txt
 
       - name: Run Black
         if: github.event_name == 'pull_request'
-        uses: reviewdog/action-black@v3.21.0
+        uses: reviewdog/action-black@v3.22.2
         with:
           reporter: github-pr-review
           tool_name: black
@@ -79,7 +79,7 @@ jobs:
 
       - name: Run Black
         if: github.event_name == 'push'
-        uses: reviewdog/action-black@v3.21.0
+        uses: reviewdog/action-black@v3.22.2
         with:
           reporter: github-check
           tool_name: black
