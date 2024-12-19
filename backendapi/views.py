@@ -34,12 +34,14 @@ def api_get(request):
 @api_view(["GET"])
 def verify_ticket(request, ticket):
     # TODO: Implement ticket check
-    if ticket == 'test123':
+    if ticket == "test123":
         return Response(
-            {"is_valid": True}, status=status.HTTP_200_OK,
+            {"is_valid": True},
+            status=status.HTTP_200_OK,
         )
     return Response(
-        {"is_valid": False}, status=status.HTTP_400_BAD_REQUEST,
+        {"is_valid": False},
+        status=status.HTTP_400_BAD_REQUEST,
     )
 
 
