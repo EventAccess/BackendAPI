@@ -103,3 +103,9 @@ def api_get(request):
         return Response({"message": "GET request received"}, status=202)
     elif request.method == "POST":
         return Response({"message": "POST request received"}, status=405) """
+
+def base_view(request): #basic frontend registration view.
+    return render(request, "base.html")
+
+def registration_view(request):
+    return render(request, "registration.html")

@@ -17,10 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-
 import backendapi.urls
+from backendapi import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(backendapi.urls)),
+    path("",views.base_view, name="base"),
+    path("Registration",views.registration_view, name="registration")
 ]

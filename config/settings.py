@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     "database",
     "backendapi",
     "rest_framework",
+    "tailwind",
+    "theme",
 ]
 
 MIDDLEWARE = [
@@ -130,8 +133,16 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = os.getenv("DJANGO_STATIC_ROOT")
+TAILWIND_APP_NAME = 'theme'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+
+NPM_BIN_PATH = os.getenv("NPM_BIN_PATH", "/default/path/to/npm")
