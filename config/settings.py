@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "tailwind",
     "theme",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -146,3 +147,5 @@ INTERNAL_IPS = [
 
 
 NPM_BIN_PATH = os.getenv("NPM_BIN_PATH", "/default/path/to/npm")
+CRISPY_TEMPLATE_PACK = 'uni_form'
+

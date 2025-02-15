@@ -1,8 +1,14 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
-{% block title %}Home - MySite{% endblock %}
+{% block title %}registration{% endblock %}
 
 {% block content %}
-<h1 class="text-3xl font-bold">Welcome to MySite!</h1>
-<p>This is the home page.</p>
+<h1> foo</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <Button> Click</Button>
+    asdasd
+</form>
 {% endblock %}

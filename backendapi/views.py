@@ -11,6 +11,8 @@ from rest_framework import status
 from backendapi import exceptions
 from .serializers import AttendantAdmin
 
+from backendapi.forms import RegistrationForm
+
 
 @csrf_exempt
 @require_POST
@@ -107,5 +109,7 @@ def api_get(request):
 def base_view(request): #basic frontend registration view.
     return render(request, "base.html")
 
+
 def registration_view(request):
-    return render(request, "registration.html")
+    context = {'form' : RegistrationForm()}
+    return render(request, "registration.html", context)
