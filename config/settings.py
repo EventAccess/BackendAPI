@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "tailwind",
     "theme",
-    "crispy_forms",
+    "django_browser_reload",
+
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
+
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -144,8 +147,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+TAILWIND_APP_NAME = 'theme'
 
-
-NPM_BIN_PATH = os.getenv("NPM_BIN_PATH", "/default/path/to/npm")
-CRISPY_TEMPLATE_PACK = 'uni_form'
+NPM_BIN_PATH = os.getenv("NPM_BIN_PATH")
 
