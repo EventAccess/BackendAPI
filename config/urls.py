@@ -26,5 +26,4 @@ urlpatterns = [
     path("api/", include(backendapi.urls)),
     path("",views.base_view, name="base"),
     path("Registration",views.registration_view, name="registration"),
-    path("__reload__/", include("django_browser_reload.urls")),
 ]

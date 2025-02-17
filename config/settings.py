@@ -46,11 +46,7 @@ INSTALLED_APPS = [
     "database",
     "backendapi",
     "rest_framework",
-    "tailwind",
     "theme",
-    "django_browser_reload",
-    "crispy_forms",
-    "crispy_tailwind",
 ]
 
 MIDDLEWARE = [
@@ -61,7 +57,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
 
 ]
 
@@ -145,13 +140,4 @@ TAILWIND_APP_NAME = 'theme'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
-TAILWIND_APP_NAME = 'theme'
 
-NPM_BIN_PATH = os.getenv("NPM_BIN_PATH")
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-
-CRISPY_TEMPLATE_PACK = "tailwind"
