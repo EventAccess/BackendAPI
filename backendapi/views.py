@@ -111,5 +111,15 @@ def base_view(request): #basic frontend registration view.
 
 
 def registration_view(request):
-    context = {'form' : RegistrationForm()}
+    context = {"form" : RegistrationForm(),
+               "success" : True,
+               }
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            context["success"] = True
+        else:
+            context["success"] = False
+
     return render(request, "registration.html", context)

@@ -1,16 +1,57 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    <title>Django Tailwind</title>
+		<title>Django Form</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="{% static 'styles.css' %}">
 	</head>
 
 	<body>
-		<div>
-            {% block content %}
-            {% endblock %}
+    <div id="toast" class="toast">
+      {% block toast %}
+      {% endblock %}
+    </div>
+		<div class="container">
+			{% block content %}
+			{% endblock %}
 		</div>
 	</body>
 </html>
+<script>
+    document.getElementById('submitBtn').addEventListener('click', function(event) {
+        const form = document.getElementById('myForm');
+
+        // Prevent the form from submitting until we show the toast
+        event.preventDefault();
+
+        // Create a FormData object
+        const formData = new FormData(form);
+
+        // Convert the form data to a JSON object (for demonstration)
+        const data = {};
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+        // Log the form data to the console (you can replace this with your form submission logic)
+        // Display the toast
+        // Submit the form (submit after showing toast)
+        form.submit();
+
+        showToast();
+      });
+
+      // Function to show the toast
+      function showToast() {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+
+        // Hide the toast after 5 seconds
+        setTimeout(function() {
+          toast.classList.remove('show');
+        }, 5000);  // Toast stays visible for 5 seconds
+      }
+</script>

@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
-
-{% block title %}registration{% endblock %}
+{% block title %}User Registration{% endblock %}
 
 {% block content %}
-<div>
-    <form>
+<div class="form-container">
+    <form method="post" id="RegisterForm">
         {% csrf_token %}
-
-        <!-- Render Crispy Form -->
         {{ form.as_p }}
-
-        <!-- Submit Button -->
-        <Button>
-            Register
-        </button>
+        <button type="submit" class="submit-btn" id="RegisterButton">Register</button>
     </form>
+    <div></div>
 </div>
+{% endblock %}
+
+{% block toast %}
+{% if success %}
+Saved!
+{% endif %}
 {% endblock %}
