@@ -6,50 +6,50 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('backendapi', '0003_initial'),
+        ("backendapi", "0003_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='attendant',
-            name='crew',
-            field=models.CharField(default='Undefined crew', max_length=100),
+            model_name="attendant",
+            name="crew",
+            field=models.CharField(default="Undefined crew", max_length=100),
         ),
         migrations.AddField(
-            model_name='attendant',
-            name='discord',
+            model_name="attendant",
+            name="discord",
             field=models.CharField(default=False, max_length=100),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='attendant',
-            name='profile_image',
-            field=models.ImageField(blank=True, null=True, upload_to='profile_images/'),
+            model_name="attendant",
+            name="profile_image",
+            field=models.ImageField(blank=True, null=True, upload_to="profile_images/"),
         ),
         migrations.AddField(
-            model_name='attendant',
-            name='ticketCrewID',
+            model_name="attendant",
+            name="ticketCrewID",
             field=models.CharField(default=False, max_length=100),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='attendant',
-            name='email',
+            model_name="attendant",
+            name="email",
             field=models.EmailField(max_length=200),
         ),
         migrations.AlterField(
-            model_name='attendant',
-            name='first_name',
+            model_name="attendant",
+            name="first_name",
             field=models.CharField(max_length=100),
         ),
         migrations.AlterField(
-            model_name='attendant',
-            name='last_name',
+            model_name="attendant",
+            name="last_name",
             field=models.CharField(max_length=100),
         ),
         migrations.AlterField(
-            model_name='attendant',
-            name='phone_number',
+            model_name="attendant",
+            name="phone_number",
             field=models.CharField(max_length=15),
         ),
     ]

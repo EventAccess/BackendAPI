@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('backendapi', '0004_attendant_crew_attendant_discord_and_more'),
+        ("backendapi", "0004_attendant_crew_attendant_discord_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='attendant',
-            name='crew',
+            model_name="attendant",
+            name="crew",
             field=models.CharField(max_length=100),
         ),
         migrations.AlterField(
-            model_name='attendant',
-            name='ticketCrewID',
+            model_name="attendant",
+            name="ticketCrewID",
             field=models.CharField(max_length=100, null=True),
         ),
     ]

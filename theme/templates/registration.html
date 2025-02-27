@@ -6,7 +6,8 @@
 <div class="form-container">
     <form method="post" id="RegisterForm">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ cmform.as_p }}
+        {{ nfcform.as_p }}
         <button type="submit" class="submit-btn" id="RegisterButton">Register</button>
     </form>
     <div></div>

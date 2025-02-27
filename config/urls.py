@@ -24,6 +24,6 @@ from backendapi import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(backendapi.urls)),
-    path("",views.base_view, name="base"),
-    path("Registration",views.registration_view, name="registration"),
+    path("", views.base_view, name="base"),
+    path("registration", views.registration_view, name="registration"),
 ]

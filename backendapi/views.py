@@ -3,21 +3,22 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.views.decorators.cache import never_cache
 from django.http import JsonResponse
-from database.models import Attendant
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from backendapi import exceptions
-from .serializers import AttendantAdmin
 
-from backendapi.forms import RegistrationForm
+from database.models import Attendant, Crewmember
+
+from . import exceptions
+from .serializers import CrewmemberAdmin
+from .forms import CrewmemberForm, AttendantNFCForm
 
 
 @csrf_exempt
 @require_POST
 @never_cache
-def scanned(request, tag: bytes):
+def scanned(request, tag: str):
     try:
         attendant = Attendant.objects.get(nfc_id=tag)
         # TODO: Queue event
@@ -33,12 +34,12 @@ def api_get(request, pk=None):
         # If there's no 'pk' parameter, return all attendants
         if pk is None:
             attendants = Attendant.objects.all()
-            serializer = AttendantAdmin(attendants, many=True)
+            serializer = CrewmemberAdmin(attendants, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         # Otherwise, return a single attendant
         try:
             attendant = Attendant.objects.get(pk=pk)
-            serializer = AttendantAdmin(attendant)
+            serializer = CrewmemberAdmin(attendant)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Attendant.DoesNotExist:
             return Response(
@@ -47,7 +48,7 @@ def api_get(request, pk=None):
 
     elif request.method == "POST":
         # Create a new attendant
-        serializer = AttendantAdmin(data=request.data)
+        serializer = CrewmemberAdmin(data=request.data)
         if serializer.is_valid():
             serializer.save()  # Save the new attendant to the database
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -62,7 +63,7 @@ def api_get(request, pk=None):
                 {"detail": "Attendant not found."}, status=status.HTTP_404_NOT_FOUND
             )
 
-        serializer = AttendantAdmin(attendant, data=request.data)
+        serializer = CrewmemberAdmin(attendant, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -77,7 +78,7 @@ def api_get(request, pk=None):
                 {"detail": "Attendant not found."}, status=status.HTTP_404_NOT_FOUND
             )
 
-        serializer = AttendantAdmin(attendant, data=request.data, partial=True)
+        serializer = CrewmemberAdmin(attendant, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -106,20 +107,28 @@ def api_get(request):
     elif request.method == "POST":
         return Response({"message": "POST request received"}, status=405) """
 
-def base_view(request): #basic frontend registration view.
+
+def base_view(request):  # basic frontend registration view.
     return render(request, "base.html")
 
 
 def registration_view(request):
-    context = {"form" : RegistrationForm(),
-               "success" : True,
-               }
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            context["success"] = True
+    success = None
+    if request.method == "POST":
+        cmform = CrewmemberForm(request.POST, request.FILES)
+        nfcform = AttendantNFCForm(request.POST, request.FILES)
+        if cmform.is_valid():
+            cmform.save()
+            success = True
         else:
-            context["success"] = False
+            success = False
+    else:
+        cmform = CrewmemberForm()
+        nfcform = AttendantNFCForm()
 
+    context = {
+        "cmform": cmform,
+        "nfcform": nfcform,
+        "success": success,
+    }
     return render(request, "registration.html", context)

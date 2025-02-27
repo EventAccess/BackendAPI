@@ -6,11 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('backendapi', '0001_initial'),
+        ("backendapi", "0001_initial"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='Attendant',
+            name="Attendant",
         ),
     ]
