@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}User Registration{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <form method="post" id="RegisterForm">
+        {% csrf_token %}
+        {{ cmform.as_p }}
+        {{ nfcform.as_p }}
+        <button type="submit" class="submit-btn" id="RegisterButton">Register</button>
+    </form>
+    <div></div>
+</div>
+{% endblock %}
+
+{% block toast %}
+{% if success %}
+Saved!
+{% endif %}
+{% endblock %}
