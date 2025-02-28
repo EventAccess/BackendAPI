@@ -1,13 +1,13 @@
 import re
 from rest_framework import serializers
 from django.conf import settings
-from .models import Attendant
+from database.models import Crewmember
 
 # Serializer for the Attendant model: handles validation, serialization, and desersialization of data.
 # Change the model later depending on requirements. Please tell me what, and il remake the model later to fit requirements.
 
 
-class AttendantAdmin(serializers.ModelSerializer):  # defined a serialiser class
+class CrewmemberAdmin(serializers.ModelSerializer):  # defined a serialiser class
     first_name = serializers.CharField(
         label=("First Name* "),  # Labels for the field
         required=True,  # This makes the fields required.
@@ -68,7 +68,7 @@ class AttendantAdmin(serializers.ModelSerializer):  # defined a serialiser class
     )
 
     class Meta:
-        model = Attendant
+        model = Crewmember
         fields = ["first_name", "last_name", "email", "phone_number"]
 
 
