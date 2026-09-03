@@ -1,5 +1,5 @@
 Django[all]==5.2.1
-django-urlconfchecks==0.11.0 # TODO: Add to CI
+django-urlconfchecks==0.13.2 # TODO: Add to CI
 daphne==4.2.0
 psycopg2-binary==2.9.10
 djangorestframework==3.16.0
