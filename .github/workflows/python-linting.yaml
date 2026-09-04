@@ -69,7 +69,7 @@ jobs:
 
       - name: Run Black
         if: github.event_name == 'pull_request'
-        uses: reviewdog/action-black@v3.22.4
+        uses: reviewdog/action-black@v3.23.0
         with:
           reporter: github-pr-review
           tool_name: black
@@ -79,7 +79,7 @@ jobs:
 
       - name: Run Black
         if: github.event_name == 'push'
-        uses: reviewdog/action-black@v3.22.4
+        uses: reviewdog/action-black@v3.23.0
         with:
           reporter: github-check
           tool_name: black
